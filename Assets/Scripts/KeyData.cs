@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class KeyData
+internal class KeyData
 {
     public KeyCode key1;
     public KeyCode key2;
