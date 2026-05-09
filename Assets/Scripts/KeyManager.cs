@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class KeyManager : MonoBehaviour
+public partial class KeyManager : MonoBehaviour
 {
     public Button button1;
     public Button button2;
@@ -158,13 +158,4 @@ public class KeyManager : MonoBehaviour
         LoadKeys();
     }
 
-    [System.Serializable]
-    private class KeyData
-    {
-        public KeyCode key1;
-        public KeyCode key2;
-        public KeyCode key3;
-        public KeyCode key4;
-        public KeyCode key5;
-    }
 }

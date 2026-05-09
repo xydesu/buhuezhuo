@@ -17,13 +17,6 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    [System.Serializable]
-    public class AudioSettings
-    {
-        public float volume;
-        public bool isMuted;
-    }
-
     void Start()
     {
         // 初始化音量設置
@@ -75,7 +68,7 @@ public class AudioManager : MonoBehaviour
 
     void SaveAudioSettings()
     {
-        AudioSettings settings = new AudioSettings();
+        AudioManagerSettings settings = new AudioManagerSettings();
         settings.volume = audioVolume;
         settings.isMuted = isMuted;
         string json = JsonUtility.ToJson(settings);
@@ -87,7 +80,7 @@ public class AudioManager : MonoBehaviour
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath);
-            AudioSettings settings = JsonUtility.FromJson<AudioSettings>(json);
+            AudioManagerSettings settings = JsonUtility.FromJson<AudioManagerSettings>(json);
             audioVolume = settings.volume;
             isMuted = settings.isMuted;
             audioSlider.value = audioVolume;
