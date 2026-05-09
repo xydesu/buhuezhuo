@@ -39,10 +39,8 @@ namespace Game
 
         void UpdateNotes()
         {
-            int index = 0;
             foreach (var note in notes)
             {
-                index++;
                 float timeToSpawn = note.Time;
                 timeToSpawnOBJ.GetComponent<TextMeshProUGUI>().text = timeToSpawn.ToString();
                 if (songTime >= timeToSpawn - 2f && !noteSpawned[note])
@@ -268,8 +266,6 @@ namespace Game
 
         void CreateNote(int note)
         {
-            //Debug.Log(note);
-            GameObject Canvas = GameObject.FindGameObjectWithTag("Canvas");
             GameObject TagNote = GameObject.FindGameObjectWithTag("TagNote");
             GameObject newNote = null;
 
@@ -337,17 +333,9 @@ namespace Game
             if (currentNoteList != null && currentNoteList.Count > 0)
             {
                 GameObject noteObject = currentNoteList[0]; // Check the first note in the list
-                float noteTime = currentNoteTimes[0];
                 float timeDiff = Mathf.Abs(noteObject.transform.position.y - target.transform.position.y);
 
                 if (timeDiff <= perfectWindow * 2)
-                {
-                    DisplayJudgeResult(Judge_Perfect);
-                    countPerfect++;
-                    combo++;
-                    score += Mathf.CeilToInt((float)maxScore / totalNotes); // Perfect score
-                }
-                else if (timeDiff <= perfectWindow)
                 {
                     DisplayJudgeResult(Judge_Perfect);
                     countPerfect++;
@@ -361,20 +349,7 @@ namespace Game
                     combo++;
                     score += Mathf.CeilToInt((float)maxScore / totalNotes * 0.6f); // Great score
                 }
-                else if (timeDiff <= greatWindow)
-                {
-                    DisplayJudgeResult(Judge_Great);
-                    countGreat++;
-                    combo++;
-                    score += Mathf.CeilToInt((float)maxScore / totalNotes * 0.6f); // Great score
-                }
                 else if (timeDiff <= missWindow * 2)
-                {
-                    DisplayJudgeResult(Judge_Miss);
-                    countMiss++;
-                    combo = 0; // Reset combo on miss
-                }
-                else if (timeDiff <= missWindow)
                 {
                     DisplayJudgeResult(Judge_Miss);
                     countMiss++;
@@ -418,11 +393,16 @@ namespace Game
             judgeResetCoroutine = StartCoroutine(JudgeReset(Judge));
         }
 
-        public void RemuseButton()
+        public void ResumeButton()
         {
             isPause = false;
             pause.SetActive(false);
             BGM.GetComponent<AudioSource>().UnPause();
+        }
+
+        public void RemuseButton()
+        {
+            ResumeButton();
         }
 
         public void RestartButton()
