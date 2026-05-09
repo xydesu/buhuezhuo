@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class KeyManager : MonoBehaviour
+public partial class KeyManager : MonoBehaviour
 {
     public Button button1;
     public Button button2;
