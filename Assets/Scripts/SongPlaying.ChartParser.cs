@@ -40,8 +40,8 @@ namespace Game
                 Value = value;
             }
 
-            public Token(TokenType type, string value, int line, int start, int lan = 1)
-                : this(type, value, line, new Range(start, start + lan)) { }
+            public Token(TokenType type, string value, int line, int start, int length = 1)
+                : this(type, value, line, new Range(start, start + length)) { }
 
             public TokenType Type { get; }
             public string Value { get; }
@@ -65,8 +65,8 @@ namespace Game
                 PositionInfo = posInfo;
             }
 
-            public ErrorPos(string message, int line, int start, int lan = 1)
-                : this(message, line, new Range(start, start + lan))
+            public ErrorPos(string message, int line, int start, int length = 1)
+                : this(message, line, new Range(start, start + length))
             {
             }
 
